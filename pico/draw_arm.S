@@ -1711,7 +1711,9 @@ FinalizeLine555:
     ldr     r7, [r5, #OFS_PicoIn_AHW-OFS_PicoIn_opt]
     ldrb    r12,[r8, #OFS_Pico_video_reg+12]
     ldrb    r6, [r8, #OFS_Pico_video_reg+0]
-    ldr     r2, [r8, #OFS_Pico_m_hardware]
+    ldrb    r2, [r8, #OFS_Pico_m_hardware]  @ CE: word ldr faulted (Datatype Misalignment,
+                                             @ offset 0x47 not 4-aligned); only bit1 is
+                                             @ tested below, so a byte load is equivalent.
     add     r1, r1, #8
 
     tst     r7, #0x20   	@ GG ?

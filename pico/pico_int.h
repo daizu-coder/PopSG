@@ -1158,12 +1158,41 @@ void REGPARM(3) sh2_peripheral_write32(u32 a, u32 d, SH2 *sh2);
 #define Pico32xInit()
 #define PicoPower32x()
 #define PicoReset32x()
+#define Pico32xPrepare()
+#define Pico32xStartup()
+#define Pico32xShutdown()
 #define PicoFrame32x()
 #define PicoUnload32x()
-#define Pico32xStateLoaded()
+#define Pico32xStateLoaded(...)
 #define FinalizeLine32xRGB555 NULL
 #define p32x_pwm_update(...)
 #define p32x_timers_recalc()
+#define PicoDrawSetOutFormat32x(which, use_32x_line_mode)
+#define PicoDrawSetOutBuf32X(dest, increment)
+// pico/memory.c's PicoRead8_io()/PicoRead16_io()/PicoWrite8_io()/
+// PicoWrite16_io() fall through to these unconditionally for any I/O-area
+// access their other cases don't claim - reachable by *any* cart, not
+// just 32X ones, so unlike the rest of this block they need a real (if
+// trivial) fallback rather than a pure no-op: treat the access exactly
+// like this same code already treats other unclaimed floating-bus reads
+// a few lines up in the same functions, and simply drop writes.
+#define PicoRead8_32x(a) ((u8)PicoRead16_floating(a))
+#define PicoRead16_32x(a) PicoRead16_floating(a)
+#define PicoWrite8_32x(a, d)
+#define PicoWrite16_32x(a, d)
+// The four externs below are all read/written unconditionally by
+// pico/state.c, pico/draw.c and platform/libretro/libretro.c, guarded
+// only by a runtime PAHW_32X check that can never be true when 32X
+// support isn't compiled in; the NO_32X stub list above was simply
+// missing them, same as the macros just added. They're real lvalues
+// (array/pointer storage), not function calls, so a macro can't stand
+// in - backing storage lives in CE/ce_32x_stub.c so this header only
+// declares it, matching this port's policy of never putting CE-side
+// definitions in core .c files.
+extern unsigned int p32x_event_times[5];
+extern struct Pico32xMem *Pico32xMem;
+extern int (*PicoScan32xBegin)(unsigned int num);
+extern int (*PicoScan32xEnd)(unsigned int num);
 #endif
 
 /* avoid dependency on newer glibc */
