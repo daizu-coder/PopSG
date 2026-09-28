@@ -37,3 +37,46 @@ PicoDrive*.zip
 pico_int_offs.h
 amalgamate
 textfilter
+
+# --- PopSG (SHARP Brain / Windows CE port) ---
+# Build output and runtime files written next to AppMain.exe
+CE/AppMain.exe
+/CE/AppMain_shinonome.exe
+/CE/AppMain_galmuri11.exe
+.font-*
+CE/build.log
+CE/*.cfg
+CE/*.log
+CE/Screenshots/
+
+# Font files and DLLs are not part of this repository (the UI font is
+# built into AppMain.exe, and the app needs no DLL beyond coredll)
+*.ttc
+gx.dll
+CE/icon1.ico
+
+# Local development notes (not published)
+/*.md
+!/README.md
+.claude/
+
+# Windows "downloaded from the internet" metadata (NTFS alternate data
+# streams that show up as real files under WSL)
+*:Zone.Identifier
+
+# Mascot drawing sources and unused variants (the build uses
+# CE/icon/popsg.ico and CE/icon/popsg_mascot.bmp)
+/Pre-icon/
+/CE/popsg_mascot_*.bmp
+
+# Original captures the README screenshots were converted from
+/PreScreenshots/
+
+# The README screenshots (see "CE/Screenshots/" above: keep them even
+# on a case-insensitive checkout)
+!/.github/screenshots/
+!/.github/screenshots/*.png
+
+# Backups
+*.pre-reparent-backup-*/
+*.pre-republish-backup-*/
