@@ -16,11 +16,11 @@ PopSG は、セガのゲーム機のエミュレータ [PicoDrive](https://githu
 
 - 多くのファイル(`pico/`、`platform/libretro/libretro.c` など)は「MAME license」で、`COPYING` を指しています
 - メガCD の CD コントローラ・CD ドライブ・グラフィック回路(`pico/cd/cdc.c`、`pico/cd/cdd.c`、`pico/cd/gfx.c`)と SPI の EEPROM(`pico/carthw/eeprom_spi.c`)は、Eke-Eke 氏の Genesis Plus GX から来たもので、同じ内容の非商用のライセンスが各ファイルの先頭に書かれています
-- CPU コアの DrZ80(`cpu/DrZ80/drz80.S`)は「非商用なら無料」です
+- CPU コアの DrZ80(`cpu/DrZ80/drz80.S`)は Reesy 氏、irixxxx 氏の作品で、非商用の利用に限り、無料で使うことを許していただいています
 - Cyclone 68000、音声のリサンプラー(`pico/sound/resampler.c`)、画像の拡大(`platform/common/upscale.h`)は、GPL と MAME のライセンスから選べます。PopSG は MAME のライセンスを選んでいます
 - SVP(`pico/carthw/svp/`)は BSD 3条項ライセンスです
 - emu2413、VGM の読み込み(`pico/sound/vgm.c`)、リサンプラーの中のフィルタ(blipper)、libretro のヘッダと libretro-common の一部は MIT、zlib は zlib ライセンスです
-- `pico/patch.c`、`pico/carthw_cfg.c`(自動で作られたデータ)、`pico/cd/megasd.c`、`pico/sound/sn76496.c`、`pico/sound/ym2612.c`、`pico/sound/ym2413.c`、`platform/common/mp3_sync.c`、`unzip/unzip.c`、`platform/libretro/libretro_core_options*.h` には、ライセンスの表記がありません(`ym2612.c` は MAME の fm.c から来たもので、著作権表示だけがあります)
+- `pico/patch.c`、`pico/carthw_cfg.c`(自動で作られたデータ)、`pico/cd/megasd.c`、`pico/sound/sn76496.c`、`pico/sound/ym2612.c`、`pico/sound/ym2413.c`、`platform/common/mp3_sync.c`、`unzip/unzip.c`、`platform/libretro/libretro_core_options*.h` には、ライセンスの表記がありません(`ym2612.c` は MAME の fm.c から来たもので、著作権表示があります)
 
 それぞれの表記と許諾文の本文は [`THIRDPARTY_LICENSES.txt`](THIRDPARTY_LICENSES.txt) にまとめています。GPL だけのファイルは `AppMain.exe` に入っていません。
 
@@ -80,9 +80,9 @@ README のスクリーンショット(`.github/screenshots/`)は、lunoka 氏の
 | PicoDrive 本体、libretro の接続部分(`platform/libretro/libretro.c`)、unzip | notaz 氏、irixxxx 氏ほか | PicoDrive のライセンス(MAME 系、非商用。表記のないファイルもあります) |
 | メガCD の CD コントローラ・CD ドライブ・グラフィック回路、SPI の EEPROM | Eke-Eke 氏(Genesis Plus GX) | Genesis Plus GX の非商用ライセンス |
 | Cyclone 68000 | FinalDave 氏、notaz 氏 | GPL バージョン2 または MAME 系(MAME 系を選択) |
-| DrZ80 | Reesy 氏、irixxxx 氏 | 非商用なら無料 |
+| DrZ80 | Reesy 氏、irixxxx 氏 | 非商用の利用に限り、無料で使うことを許していただいています |
 | SVP | notaz 氏 | BSD 3条項 |
-| YM2612 音源(MAME の fm.c から) | Jarek Burczynski 氏、Tatsuyuki Satoh 氏 | 表記なし(著作権表示のみ) |
+| YM2612 音源(MAME の fm.c から) | Jarek Burczynski 氏、Tatsuyuki Satoh 氏 | ライセンスの表記はなく、著作権表示があります |
 | emu2413 | Mitsutaka Okazaki 氏 | MIT |
 | リサンプラーのフィルタ(blipper) | Hans-Kristian Arntzen 氏 | MIT |
 | libretro API のヘッダ、libretro-common の一部 | The RetroArch team | MIT |

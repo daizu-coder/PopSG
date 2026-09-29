@@ -260,7 +260,7 @@ OS components are not bundled.
 
 Upstream files compiled into AppMain.exe that carry no license notice:
 pico/patch.c, pico/carthw_cfg.c (generated data),
-pico/cd/megasd.c ("(C) irixxxx, 2024" only), pico/sound/sn76496.c
+pico/cd/megasd.c (copyright line "(C) irixxxx, 2024"), pico/sound/sn76496.c
 (derived from MAME's sn76496.c), pico/sound/ym2413.c (PicoDrive's
 wrapper for emu2413), platform/common/mp3_sync.c, unzip/unzip.c
 (MAME-derived) and platform/libretro/libretro_core_options*.h. They are
@@ -380,7 +380,9 @@ License:  as stated in cpu/DrZ80/drz80.S and cpu/DrZ80/DrZ80.txt:
 
   For commercial use, separate licencing terms must be obtained.
 
-This restriction is one reason the whole port is non-commercial-only.
+DrZ80 is the work of Reesy and irixxxx, who allow it to be used free of
+charge for non-commercial purposes; together with PicoDrive's license,
+this is why PopSG as a whole is for non-commercial use.
 
 SVP (Virtua Racing's chip)
 --------------------------

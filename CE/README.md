@@ -92,10 +92,10 @@ SHARP Brain(PW-G5200 など)を PC にリムーバブルディスクとしてつ
 - **PicoDrive** — エミュレーションコア。**notaz**(Gražvydas Ignotas)氏、**irixxxx** 氏ほか。MAME 系ライセンス(非商用)
   <https://github.com/irixxxx/picodrive>、libretro 版 <https://github.com/libretro/picodrive>
 - **Cyclone 68000** — **FinalDave** 氏、**notaz** 氏。GPLv2 または MAME 系(MAME 系を選択)
-- **Genesis Plus GX** の一部(メガCD の CD コントローラ・CD ドライブ・グラフィック回路、SPI の EEPROM)— **Eke-Eke** 氏。非商用のライセンス
+- **Genesis Plus GX** の一部(メガCD の CD コントローラ・CD ドライブ・グラフィック回路、SPI の EEPROM)— **Eke-Eke** 氏の作品です。非商用の利用に限り、使うことを許していただいています
 - **SVP** — **notaz** 氏。BSD 3条項
 - **YM2612 音源** — **Jarek Burczynski** 氏、**Tatsuyuki Satoh** 氏(MAME の fm.c)
-- **DrZ80** — **Reesy** 氏、**irixxxx** 氏。非商用なら無料
+- **DrZ80** — **Reesy** 氏、**irixxxx** 氏の作品です。非商用の利用に限り、無料で使うことを許していただいています
 - **emu2413**(YM2413 音源)— **Mitsutaka Okazaki** 氏(Digital Sound Antiques)。MIT
 - 音声のリサンプラーのフィルタ(**blipper**)— **Hans-Kristian Arntzen** 氏。MIT
 - **libretro API** のヘッダ・**libretro-common** の一部 — **The RetroArch team**。MIT

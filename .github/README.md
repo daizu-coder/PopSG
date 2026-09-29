@@ -60,8 +60,8 @@ PopSG は、次の方々の作品を使わせていただいています。あ�
 
 - **PicoDrive**(エミュレータ本体):notaz 氏(Gražvydas Ignotas 氏)、irixxxx 氏ほか、PicoDrive のコントリビューターと、libretro 版を保守する libretro のコントリビューター。PicoDrive のライセンス(非商用)。上流は [libretro/picodrive](https://github.com/libretro/picodrive)、[irixxxx/picodrive](https://github.com/irixxxx/picodrive) です。
 - **Cyclone 68000**(68000 CPU):FinalDave 氏、notaz 氏。GPL バージョン2と MAME のライセンスから選べます(PopSG は MAME のライセンスを選んでいます)。
-- **DrZ80**(Z80 CPU):Reesy 氏、irixxxx 氏。非商用なら無料。
-- **メガCD の CD コントローラ・CD ドライブ・グラフィック回路、SPI の EEPROM**:Eke-Eke 氏(Genesis Plus GX)。非商用のライセンス。
+- **DrZ80**（Z80 CPU）：Reesy 氏、irixxxx 氏の作品です。非商用の利用に限り、無料で使うことを許していただいています。
+- **メガCD の CD コントローラ・CD ドライブ・グラフィック回路、SPI の EEPROM**:Eke-Eke 氏(Genesis Plus GX)の作品です。非商用の利用に限り、使うことを許していただいています。
 - **SVP(バーチャレーシングのチップ)**:notaz 氏。BSD 3条項ライセンス。
 - **YM2612 音源**:Jarek Burczynski 氏、Tatsuyuki Satoh 氏(MAME の fm.c)。**SN76489 音源**:MAME の sn76496.c。
 - **emu2413**(YM2413 音源):Mitsutaka Okazaki 氏。MIT ライセンス。
