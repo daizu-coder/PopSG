@@ -85,6 +85,8 @@ SHARP Brain(PW-G5200 など)を PC にリムーバブルディスクとしてつ
 
 - SHARP Brain PW-G5200
 
+PopGBA を CeOpener や CERestorer から起動すると、PW-G5300 で、終了後に画面が真っ暗になる、または操作を受け付けなくなることがありました。USB ケーブルと電池を抜いてから入れ直すと戻りました。PopSG での動作は確かめていません。
+
 ## クレジット
 
 - **PicoDrive** — エミュレーションコア。**notaz**(Gražvydas Ignotas)氏、**irixxxx** 氏ほか。MAME 系ライセンス(非商用)
