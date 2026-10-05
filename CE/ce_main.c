@@ -1304,10 +1304,16 @@ static int CeSaveState(void)
         return 0;
     }
 
-    buffer = malloc(size);
+    /* calloc, not malloc: retro_serialize_size() is a worst case (it
+     * counts the 32X chunks for MD/MCD and the FM unit for SMS), the core
+     * writes only the chunks the game really has, and the whole buffer
+     * goes to the file. pico/state.c reads past the real chunks too, so
+     * the tail must be zeros (chunk 0, length 0 - skipped) rather than
+     * leftover heap bytes it could take for a chunk header. */
+    buffer = calloc(1, size);
     if (!buffer)
     {
-        CeLog("CeSaveState: malloc(%lu) failed", (unsigned long)size);
+        CeLog("CeSaveState: calloc(%lu) failed", (unsigned long)size);
         return 0;
     }
 
