@@ -52,7 +52,7 @@ PopSG 全体は、上流と同じ条件(PicoDrive の非商用ライセンス)�
 
 **使い方やビルドの説明は [CE/README.md](../CE/README.md)、ライセンスの詳しい説明は [CE/LICENSING.md](../CE/LICENSING.md) にあります。**
 
-このリポジトリは、上流の [libretro/picodrive](https://github.com/libretro/picodrive) のコミット `6248b51` を元にしています。直下の `README.md` は上流の PicoDrive の説明で、PopSG の説明ではありません。
+このリポジトリは、上流の [libretro/picodrive](https://github.com/libretro/picodrive) のコミット `1890c29`(2026-09-26)を元にしています。直下の `README.md` は上流の PicoDrive の説明で、PopSG の説明ではありません。
 
 ## クレジット
 

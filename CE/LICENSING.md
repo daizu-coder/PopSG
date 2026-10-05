@@ -33,7 +33,7 @@ PopSG は、セガのゲーム機のエミュレータ [PicoDrive](https://githu
 
 ## 2. PicoDrive 本体(上流のファイル)
 
-リポジトリ直下のファイルは、上流の [libretro/picodrive](https://github.com/libretro/picodrive) のコミット `6248b51`(2026-07-29)を元にしています。libretro/picodrive は、irixxxx 氏の [picodrive](https://github.com/irixxxx/picodrive)(notaz 氏の [picodrive](https://github.com/notaz/picodrive) の後継)の libretro 版です。
+リポジトリ直下のファイルは、上流の [libretro/picodrive](https://github.com/libretro/picodrive) のコミット `1890c29`(2026-09-26)を元にしています。libretro/picodrive は、irixxxx 氏の [picodrive](https://github.com/irixxxx/picodrive)(notaz 氏の [picodrive](https://github.com/notaz/picodrive) の後継)の libretro 版です。
 
 PopSG が変えた上流のファイルは次のものだけです。どれも Windows CE 用のツール(cegcc)とこの端末に合わせるためのもので、ライセンスは変わりません。
 
