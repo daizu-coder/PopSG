@@ -43,6 +43,10 @@
 #include "ce_bmpfont.h"
 #include "ce_resource.h"
 
+/* pico/memory.c (declared in pico/pico_int.h, which this file doesn't
+ * otherwise need) - see LoadRomFlow() for why it's called there. */
+void io_ports_reset(void);
+
 static const wchar_t kWndClassName[] = L"PopSGWnd";
 static const wchar_t kMutexName[]    = L"PopSG_SingleInstance";
 static const wchar_t kAppTitle[]     = L"PopSG";
@@ -774,6 +778,24 @@ static int LoadRomFlow(HWND hwnd)
             return 0;
         }
     }
+
+    /* Re-sync the core's pad-port timing state to the freshly reset
+     * 68k cycle counter. PicoPower() (inside retro_load_game()) resets
+     * Pico.t.m68c_cnt to 0 but not pico/memory.c's padTHLatency/
+     * padTLLatency/padTHTimeout, which still hold the previous game's
+     * (much larger) cycle counts after a mid-game ROM switch. Until the
+     * new game's counter caught up with them, port_read() inverted TL
+     * and held TH low, so the new game saw a pad button held from its
+     * very first read (on-device debug log: 0xA10003 read 0xa3 instead
+     * of 0xff after playing another game first) - SGDK titles such as
+     * Mai Nurse skipped straight past their title screen. io_ports_reset()
+     * is the core's own reset for exactly that state (pico/state.c
+     * calls it when a save state carries none); on a first load it
+     * changes nothing (those values are already 0). Called here, after
+     * both the first try and the Mega CD retry above, and before the
+     * first retro_run(). Only the Mega Drive / Mega CD pad ports read
+     * these values - harmless for Master System, Game Gear and Pico. */
+    io_ports_reset();
 
     g_romLoaded = 1;
     wcsncpy(g_romPath, romPath, MAX_PATH - 1);
