@@ -300,7 +300,7 @@ else ifeq ($(platform), wiiu)
 	CC = $(DEVKITPPC)/bin/powerpc-eabi-gcc$(EXE_EXT)
 	CXX = $(DEVKITPPC)/bin/powerpc-eabi-g++$(EXE_EXT)
 	AR = $(DEVKITPPC)/bin/powerpc-eabi-ar$(EXE_EXT)
-	CFLAGS += -DGEKKO -DWIIU -DHW_RVL -DHW_WUP -mwup -mcpu=750 -meabi -mhard-float
+	CFLAGS += -DGEKKO -DWIIU -DHW_RVL -DHW_WUP -D__wiiu__ -mcpu=750 -meabi -mhard-float
 	PLATFORM_TREMOR ?= 1
 	STATIC_LINKING = 1
 	STATIC_LINKING_LINK = 1
@@ -617,8 +617,6 @@ endif
 
 ifneq (,$(findstring webos,$(CROSS_COMPILE)$(findstring starfish,$(CROSS_COMPILE))))
   CFLAGS += -DWEBOS
-  CYCLONE_CC ?= $(CC_FOR_BUILD)
-  CYCLONE_CXX ?= $(CXX_FOR_BUILD)
 endif
 
 CFLAGS += -D__LIBRETRO__

@@ -74,6 +74,8 @@ int _newlib_vm_size_user = 1 << TARGET_SIZE_2;
 #include <ps3mapi_ps3_lib.h>
 
 static uint64_t page_table[2] = {0, 0};
+#elif defined(PSP)
+#include <psputils.h>
 #endif
 
 #include "libretro_core_options.h"
@@ -797,13 +799,19 @@ size_t retro_serialize_size(void)
 {
    struct savestate_state state = { 0, };
    unsigned AHW = PicoIn.AHW;
+   unsigned hardware = Pico.m.hardware;
    int ret;
 
-   /* we need the max possible size here, so include 32X for MD and MCD */
+   /* we need the max possible size here, so include 32X for MD and MCD,
+    * and the SMS FM unit state, which is only stored once a game has
+    * accessed the FM port (frontends may cache this size at load time) */
    if (!(AHW & (PAHW_SMS|PAHW_PICO|PAHW_SVP)))
       PicoIn.AHW |= PAHW_32X;
+   else if (AHW & PAHW_SMS)
+      Pico.m.hardware |= PMS_HW_FMUSED;
    ret = PicoStateFP(&state, 1, NULL, state_skip, NULL, state_fseek);
    PicoIn.AHW = AHW;
+   Pico.m.hardware = hardware;
    if (ret != 0)
       return 0;
 
@@ -860,7 +868,7 @@ void retro_cheat_reset(void)
 		if (addr < Pico.romsize) {
 			if (PicoPatches[i].active)
 				*(unsigned short *)(Pico.rom + addr) = PicoPatches[i].data_old;
-		} else {
+		} else if (!(PicoIn.AHW & PAHW_SMS)) {
 			if (PicoPatches[i].active)
 				m68k_write16(PicoPatches[i].addr,PicoPatches[i].data_old);
 		}
@@ -911,7 +919,7 @@ void retro_cheat_set(unsigned index, bool enabled, const char *code)
 		PicoPatches[PicoPatchCount].comp = pt.comp;
 		if (PicoPatches[PicoPatchCount].addr < Pico.romsize)
 			PicoPatches[PicoPatchCount].data_old = *(uint16_t *)(Pico.rom + PicoPatches[PicoPatchCount].addr);
-		else
+		else if (!(PicoIn.AHW & PAHW_SMS))
 			PicoPatches[PicoPatchCount].data_old = (uint16_t) m68k_read16(PicoPatches[PicoPatchCount].addr);
 		PicoPatchCount++;
 
@@ -2169,7 +2177,7 @@ static int readpng(unsigned short *dest, const char *fname, int req_w, int req_h
    rpng_start(rpng);
    while (rpng_iterate_image(rpng));
    do {
-      ret = rpng_process_image(rpng, &img, len, &w, &h);
+      ret = rpng_process_image(rpng, &img, len, &w, &h, false);
    } while (ret == IMAGE_PROCESS_NEXT);
 
    // there's already a scaled pngread in libpicofe, but who cares :-/
