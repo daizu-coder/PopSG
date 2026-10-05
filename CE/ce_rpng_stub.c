@@ -60,12 +60,13 @@ bool rpng_iterate_image(rpng_t *rpng)
 }
 
 int rpng_process_image(rpng_t *rpng, void **data, size_t size,
-		unsigned *width, unsigned *height)
+		unsigned *width, unsigned *height, bool supports_rgba)
 {
 	(void)rpng;
 	(void)size;
 	(void)width;
 	(void)height;
+	(void)supports_rgba;
 	*data = NULL;
 	return -1; /* IMAGE_PROCESS_ERROR_END - anything but IMAGE_PROCESS_NEXT
 	              (0), or the caller's "while (ret == ...NEXT)" loop never
