@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: MIT */
 /* Copyright (c) 2026 daizu-coder */
 /*
- * Windows CE frontend for PicoDrive (SHARP Brain PW-G5200, ARM).
+ * Windows CE frontend for PicoDrive (SHARP Brain PW-G5300, ARM).
  *
  * This is a *libretro frontend*, not a port that reaches into the
  * PicoDrive core directly: ../platform/libretro/libretro.c already

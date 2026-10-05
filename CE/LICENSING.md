@@ -1,6 +1,6 @@
 # PopSG のライセンス
 
-PopSG は、セガのゲーム機のエミュレータ [PicoDrive](https://github.com/irixxxx/picodrive)(notaz 氏、irixxxx 氏ほか)の libretro 版を、SHARP Brain PW-G5200(Windows CE)向けに移植した、**非公式・非商用**の改変版です。PicoDrive の作者やメンテナーはこの移植に関わっていません。
+PopSG は、セガのゲーム機のエミュレータ [PicoDrive](https://github.com/irixxxx/picodrive)(notaz 氏、irixxxx 氏ほか)の libretro 版を、SHARP Brain PW-G5300(Windows CE)向けに移植した、**非公式・非商用**の改変版です。PicoDrive の作者やメンテナーはこの移植に関わっていません。
 
 ライセンスは2段になっています。
 

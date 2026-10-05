@@ -4,7 +4,7 @@
 
 ## 概要
 
-- セガのゲーム機のエミュレータ [PicoDrive](https://github.com/irixxxx/picodrive) の libretro 版を、SHARP の電子辞書 **Brain PW-G5200**(Windows CE / ARMv5TE、ハードウェア整数除算なし)向けに移植したものです
+- セガのゲーム機のエミュレータ [PicoDrive](https://github.com/irixxxx/picodrive) の libretro 版を、SHARP の電子辞書 **Brain PW-G5300**(Windows CE / ARMv5TE、ハードウェア整数除算なし)向けに移植したものです
 - `platform/libretro/libretro.c` をそのままコンパイルし、Win32 のフロントエンド(`CE/` 以下)を新しく書いて繋いでいます。コア側の変更は、32X を外したときの定義の補い(`pico/pico_int.h`)と、この端末で止まる1命令の修正(`pico/draw_arm.S`)だけです
 - ゲームの ROM・BIOS は同梱していません。利用者が合法的に用意したものを使ってください
 - SHARP・セガとは関係のない、非公式のファンプロジェクトです
@@ -65,7 +65,7 @@ git submodule update --init cpu/cyclone pico/sound/emu2413
 
 ## 使用方法
 
-SHARP Brain(PW-G5200 など)を PC にリムーバブルディスクとしてつなぎ、ドライブの直下に次のように置きます(メニューの名前は機種によって違うことがあります)。
+SHARP Brain(PW-G5300)を PC にリムーバブルディスクとしてつなぎ、ドライブの直下に次のように置きます(メニューの名前は機種によって違うことがあります)。
 
 ```
 <ドライブ直下>/
@@ -83,9 +83,9 @@ SHARP Brain(PW-G5200 など)を PC にリムーバブルディスクとしてつ
 
 ## 動作確認環境
 
-- SHARP Brain PW-G5200
+- SHARP Brain PW-G5300
 
-PopGBA を CeOpener や CERestorer から起動すると、PW-G5300 で、終了後に画面が真っ暗になる、または操作を受け付けなくなることがありました。USB ケーブルと電池を抜いてから入れ直すと戻りました。PopSG での動作は確かめていません。
+PopSG を CeOpener から起動すると、PW-G5300 で、終了後に画面が真っ暗になる、または操作を受け付けなくなることがありました。USB ケーブルと電池を抜いてから入れ直すと戻りました。CERestorer から起動したときの動作は確かめていません。
 
 ## クレジット
 

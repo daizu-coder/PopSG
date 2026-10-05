@@ -15,9 +15,9 @@
 </p>
 <p align="center"><sub>画面は lunoka 氏の <a href="https://lunoka.itch.io/mai-nurse">「Mai Nurse」</a> を PopSG の x1(等倍)表示で動かしたものです(作者の許可を得て掲載。下の「クレジット」を参照)。</sub></p>
 
-**非公式・非商用の改変版です。** PopSG は、セガのゲーム機のエミュレータ [PicoDrive](https://github.com/irixxxx/picodrive)(notaz 氏、irixxxx 氏ほか)の libretro 版を、SHARP の電子辞書 Brain PW-G5200(Windows CE)向けに移植した**非公式**の改変版です。PicoDrive の公式版ではありません。PicoDrive の作者やメンテナーはこの移植に関わっておらず、サポートもしていません。不具合の報告は、上流ではなくこちらにお願いします。PicoDrive のライセンスにより、販売すること、商用の製品や活動に使うこと、お金を払った人だけに配ることはできません。
+**非公式・非商用の改変版です。** PopSG は、セガのゲーム機のエミュレータ [PicoDrive](https://github.com/irixxxx/picodrive)(notaz 氏、irixxxx 氏ほか)の libretro 版を、SHARP の電子辞書 Brain PW-G5300(Windows CE)向けに移植した**非公式**の改変版です。PicoDrive の公式版ではありません。PicoDrive の作者やメンテナーはこの移植に関わっておらず、サポートもしていません。不具合の報告は、上流ではなくこちらにお願いします。PicoDrive のライセンスにより、販売すること、商用の製品や活動に使うこと、お金を払った人だけに配ることはできません。
 
-**Unofficial, non-commercial port.** PopSG is an unofficial port of the libretro edition of PicoDrive (by notaz, irixxxx and contributors) to the SHARP Brain PW-G5200 (Windows CE). It is not an official PicoDrive release, and the PicoDrive authors and maintainers are not involved in it and do not support it. Please report PopSG issues here, not upstream. Under the PicoDrive license, PopSG may not be sold or used in a commercial product or activity.
+**Unofficial, non-commercial port.** PopSG is an unofficial port of the libretro edition of PicoDrive (by notaz, irixxxx and contributors) to the SHARP Brain PW-G5300 (Windows CE). It is not an official PicoDrive release, and the PicoDrive authors and maintainers are not involved in it and do not support it. Please report PopSG issues here, not upstream. Under the PicoDrive license, PopSG may not be sold or used in a commercial product or activity.
 
 ## ダウンロード
 最新版は Releases のページからダウンロードできます。
