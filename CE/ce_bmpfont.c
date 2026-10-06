@@ -531,7 +531,7 @@ void CeBmpFontDrawOwnerButtonTheme(const DRAWITEMSTRUCT *dis, COLORREF bg, COLOR
          * blue (user request: "a more subdued blue than the current
          * one") - still white border/icon/text every time, only the
          * fill color changed. That same round also thickened the white
-         * ring to 4px (see the focus-ring block further down). The
+         * ring (4px then, now 3px - see the focus-ring block further down). The
          * current #2F5FA8 has a 6.32:1 contrast ratio against the white
          * text (the brighter #2A6BCC it replaced: 5.16:1). A tap/decide
          * darkens the fill to about 3/4 of each channel (#23477E,
@@ -590,7 +590,7 @@ void CeBmpFontDrawOwnerButtonTheme(const DRAWITEMSTRUCT *dis, COLORREF bg, COLOR
      * A stock object, so no matching DeleteObject(). */
     SelectObject(dis->hDC, GetStockObject(NULL_BRUSH));
 
-    /* Focus ring (user request: "make the focus outline thicker, 4px"):
+    /* Focus ring (user requests: "make the focus outline thicker, 4px", later 1px thinner, now 3px):
      * a separate CE_MENU_FOCUS_BORDER_PX pen drawn on top of the normal
      * 2px outline above, inset by half its width so its outer edge
      * lines up with the button's own edge instead of half of it being
