@@ -487,7 +487,7 @@ static void DrawMenuIcon(HDC hdc, CeMenuIcon icon, int cx, int cy, int box)
 
 /* Width in px of the focused main-menu button's white ring - see the
  * focus-ring block inside CeBmpFontDrawOwnerButtonTheme() below. */
-#define CE_MENU_FOCUS_BORDER_PX 4
+#define CE_MENU_FOCUS_BORDER_PX 3
 
 void CeBmpFontDrawOwnerButtonTheme(const DRAWITEMSTRUCT *dis, COLORREF bg, COLORREF border, COLORREF text,
                                     CeMenuIcon icon, int stacked, COLORREF windowBg)
@@ -604,7 +604,7 @@ void CeBmpFontDrawOwnerButtonTheme(const DRAWITEMSTRUCT *dis, COLORREF bg, COLOR
     {
         HPEN hFocusPen = CreatePen(PS_SOLID, CE_MENU_FOCUS_BORDER_PX, border);
         int inset = CE_MENU_FOCUS_BORDER_PX / 2;
-        int focusCorner = corner - CE_MENU_FOCUS_BORDER_PX;
+        int focusCorner = corner - 2 * inset; /* concentric with the pill edge for odd widths too */
         if (focusCorner < 0)
             focusCorner = 0;
         SelectObject(dis->hDC, hFocusPen);
