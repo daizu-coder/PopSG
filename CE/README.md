@@ -36,17 +36,25 @@ CPU コアは Cyclone(68000)と DrZ80(Z80)です。どちらも手書き・自�
 
 ## ビルド方法
 
-必要なもの:
-
-- WSL(Windows 上の Linux)などに入れた cegcc のクロスコンパイラ(`/opt/cegcc/bin/arm-mingw32ce-*`。GCC 9.3.0、binutils 2.34 で確認)
+- ツール
+  * cegcc(`arm-mingw32ce-*`、`/opt/cegcc`)— Windows CE / ARM 向けのクロスコンパイラ。製作者は WSL(Windows 上の Linux)でビルドしています
+  * GCC 9.3.0、binutils 2.34 で確認
 - サブモジュール `cpu/cyclone`(Cyclone 68000)と `pico/sound/emu2413`(YM2413 音源)
+- 手順
+  * `CE/` で `make && make strip` を実行します
+  * `CE/AppMain.exe` ができます(依存する DLL は `COREDLL.dll` だけ)
+  * 既定のフォントは Galmuri14 です。`make CE_FONT=shinonome` で東雲 16 ドット版(`AppMain_shinonome.exe`)、`make CE_FONT=galmuri11` で GalmuriMono11 版(`AppMain_galmuri11.exe`)も作れます。フォントは AppMain.exe に入っているので、フォントのファイルは要りません
+  * `draw_arm.S` が使う `pico/pico_int_offs.h` は、ビルドの途中で `tools/mkoffsets_ce.sh` が作ります
+  * Cyclone の `Cyclone.s` は作成済みのものを `CE/cyclone/` に置いているので、ホストの C++ コンパイラは要りません。作り直す方法は [`cyclone/README.txt`](cyclone/README.txt) にあります
+  * 設計の理由やつまずいた点は、`CE/` の各ソース(特に `Makefile`、`ce_main.c`、`ce_display.c`)の冒頭のコメントにあります
 
 **クローンするときは `--recursive` を付けてください。** 付けないと、サブモジュールのフォルダが空のままになり、ビルドが失敗します。GitHub の「Download ZIP」にもサブモジュールの中身は入らないので、ZIP では取得しないでください。
 
 ```sh
 git clone --recursive https://github.com/daizu-coder/PopSG.git
 cd PopSG/CE
-make clean && make && make strip
+make
+make strip
 ```
 
 `--recursive` を付けずにクローンしてしまった場合は、リポジトリの中で次を実行してください(PopSG が使うサブモジュール2つだけを取得します)。
@@ -56,12 +64,6 @@ git submodule update --init cpu/cyclone pico/sound/emu2413
 ```
 
 `--recursive` を付けると、PopSG では使わないサブモジュール(`platform/libpicofe`、`pico/cd/libchdr`、`platform/common/dr_libs`)も一緒に取得されますが、ビルドには影響しません。
-
-- できあがるのは `CE/AppMain.exe` です(依存する DLL は `COREDLL.dll` だけ)
-- 既定のフォントは Galmuri14 です。`make CE_FONT=shinonome` で東雲 16 ドット版(`AppMain_shinonome.exe`)、`make CE_FONT=galmuri11` で GalmuriMono11 版(`AppMain_galmuri11.exe`)も作れます
-- `draw_arm.S` が使う `pico/pico_int_offs.h` は、ビルドの途中で `tools/mkoffsets_ce.sh` が作ります
-- Cyclone の `Cyclone.s` は作成済みのものを `CE/cyclone/` に置いているので、ホストの C++ コンパイラは要りません。作り直す方法は [`cyclone/README.txt`](cyclone/README.txt) にあります
-- 設計の理由やつまずいた点は、`CE/` の各ソース(特に `Makefile`、`ce_main.c`、`ce_display.c`)の冒頭のコメントにあります
 
 ## 使用方法
 
