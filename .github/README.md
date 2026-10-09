@@ -48,7 +48,9 @@ PopSG 全体は、上流と同じ条件(PicoDrive の非商用ライセンス)�
 
 ゲームの ROM と BIOS は同梱していません。
 
-## ビルド方法、使用方法 → [CE/README.md](../CE/README.md)
+## ビルド方法、使用方法
+(→ [CE/README.md](../CE/README.md) にあります)
+
 ソースを取得するときは `git clone --recursive` を使ってください。サブモジュール(Cyclone 68000、emu2413)を使っているので、`--recursive` なしのクローンや「Download ZIP」ではビルドできません。
 
 ## クレジット
