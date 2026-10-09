@@ -42,17 +42,18 @@ Brainへのインストールは[アプリの起動方法](https://brain.fandom.
 コードとマスコットの絵はAI(Claude)で作りました。製作者はプログラムを読めません。
 
 ## ライセンスと商標
-PopSG 全体は、上流と同じ条件(PicoDrive の非商用ライセンス)で配布します。PopSG の自作部分は MIT ライセンス、マスコットの絵とアイコンは CC0 1.0 です。上流はいくつもの部品からできていて、部品ごとにライセンスの条件が異なるため(Genesis Plus GX から来た非商用のライセンスのファイル、GPL と選べるファイル、表記のないファイルがあります)、詳しくは [CE/LICENSING.md](../CE/LICENSING.md) をご覧ください。
+PopSG 全体は、上流と同じ条件(PicoDrive の非商用ライセンス)で配布します。PopSG の自作部分は MIT ライセンス、マスコットの絵とアイコンは CC0 1.0 です。上流はいくつもの部品からできていて、部品ごとにライセンスの条件が異なります(Genesis Plus GX から来た非商用のライセンスのファイル、GPL と選べるファイル、表記のないファイルがあります)。
 
 「SEGA」「セガ」「メガドライブ」「Mega Drive」「Genesis」「マスターシステム」「Master System」「ゲームギア」「Game Gear」「メガCD」「Mega-CD」「Sega CD」は株式会社セガの商標、「SHARP」「Brain」はシャープ株式会社の商標です。PopSG は、セガ、シャープなどの権利者とは関係ありません。
 
+ライセンスの詳しい説明は [CE/LICENSING.md](../CE/LICENSING.md) にあります。
+
 ゲームの ROM と BIOS は同梱していません。
 
+## ビルド方法、使用方法
 ソースを取得するときは `git clone --recursive` を使ってください。サブモジュール(Cyclone 68000、emu2413)を使っているので、`--recursive` なしのクローンや「Download ZIP」ではビルドできません。
 
-**使い方やビルドの説明は [CE/README.md](../CE/README.md)、ライセンスの詳しい説明は [CE/LICENSING.md](../CE/LICENSING.md) にあります。**
-
-このリポジトリは、上流の [libretro/picodrive](https://github.com/libretro/picodrive) のコミット `1890c29`(2026-09-26)を元にしています。直下の `README.md` は上流の PicoDrive の説明で、PopSG の説明ではありません。
+ビルド方法と使用方法は [CE/README.md](../CE/README.md) をご覧ください。
 
 ## クレジット
 
