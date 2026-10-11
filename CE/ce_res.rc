@@ -79,7 +79,7 @@ BEGIN
 END
 
 /* Two columns (D-pad/Start on the left, A/B&1/A&2/X/Y/Z on the right,
- * both read top-to-bottom in that order - user request, round 22) of
+ * both read top-to-bottom in that order - user request, round 23) of
  * label + remap-button pairs, plus a footer row - see ce_input.c for
  * the remap-by-press logic and ce_resource.h for why this is a plain
  * DialogBox like IDD_MAINMENU. The right column shows Genesis button

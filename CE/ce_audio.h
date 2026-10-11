@@ -67,7 +67,7 @@ unsigned CeAudioGetBufferedMs(void);
  * pushing new samples - CeAudioThreadProc keeps playing silence exactly
  * as before, this only stops it from misreporting that starvation as an
  * "audio underrun" (which the log/counter otherwise can't tell apart
- * from the emulator genuinely falling behind - see round-20 dev notes
+ * from the emulator genuinely falling behind - see round-21 dev notes
  * investigation). Call from ce_main.c wherever g_paused is set/cleared. */
 void CeAudioSetPaused(int paused);
 

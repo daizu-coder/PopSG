@@ -38,7 +38,7 @@
 #    (small hand-written ARM asm glue already checked into pico/, no
 #    submodule needed) supplies the fast memory-map callbacks Cyclone
 #    calls into. 68000 is the Genesis's main CPU, so this was the
-#    most promising lever after the round-6 perf profiling (see
+#    most promising lever after the round-5 perf profiling (see
 #    the dev notes) pointed at it as the single biggest per-frame cost.
 #    Cyclone's tools/idle.s (the idle-busy-loop patcher, fast-
 #    forwards VBlank/DMA/VDP-status polling loops instead of interpreting
@@ -102,7 +102,7 @@
 #    wired both in): hand-written ARM asm replacements for pico/draw.c's
 #    and pico/draw2.c's tile/sprite renderers, enabled together via
 #    -D_ASM_DRAW_C (upstream's own build switch - see both .c files'
-#    #ifndef _ASM_DRAW_C guards). Investigated as a follow-up to round 6's
+#    #ifndef _ASM_DRAW_C guards). Investigated as a follow-up to round 5's
 #    profiling, which named `draw` (5-6ms/frame in SSF2 combat) the
 #    second-largest per-frame cost after m68k. Both files check out fine
 #    for this toolchain (no ELF-only directives, no idle.s-style PIC
