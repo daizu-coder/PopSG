@@ -69,15 +69,16 @@ int CeVideoEnvGetVariable(const char *key, const char **outValue);
  * very next retro_run() without needing a fresh retro_load_game(). */
 int CeVideoConsumeDirty(void);
 
-/* Automatic frame skip (round 10; range widened to 0..30 in round 11 to
- * match the core's own cap): Video Config's Frame Skip dial (0..30) is
+/* Automatic frame skip (round 10; range widened to 0..30 in round 11):
+ * Video Config's Frame Skip dial (0..30) is
  * the *maximum* number of consecutive frames the core is allowed to
  * skip while it's actually falling behind (picodrive_frameskip "auto" -
  * the core's own audio-buffer-underrun signal), not a fixed always-
  * skip-N cadence. The core's own internal safety cap on consecutive
- * skips (FRAMESKIP_MAX in libretro/libretro.c) is a fixed 30 and isn't
- * exposed as a per-port option, so ce_main.c's WinMain loop enforces
- * this dial's own (possibly smaller) cap itself using the pair below:
+ * skips (FRAMESKIP_MAX in platform/libretro/libretro.c) is a fixed 60 and
+ * isn't exposed as a per-port option, so ce_main.c's WinMain loop
+ * enforces this dial's own (always smaller) cap itself using the pair
+ * below:
  *
  *   - CeVideoFrameSkipShouldForceRender() is checked once per frame,
  *     right before WinMain would otherwise forward CeAudioGetBufferStatus()'s

@@ -36,17 +36,15 @@ static CeScaleMode s_scaleMode  = CE_SCALE_EXPAND; /* matches pre-Video-Config b
  * checkbox (see CeVideoEnvGetVariable below) - PicoDrive has no directly
  * equivalent option, so this control was repurposed rather than removed. */
 static int         s_noSpriteLimit = 0;
-/* Frame Skip (round 10, range widened to match the core's own cap in
- * round 11): 0 = off (never skips); 1..30 = the maximum number of
- * consecutive frames the core is allowed to skip while it's actually
- * falling behind (picodrive_frameskip "auto" - the core's own
- * audio-buffer-underrun signal), enforced against the core's own fixed
- * FRAMESKIP_MAX (libretro/libretro.c, 30) by
+/* Frame Skip (round 10, range widened to 0..30 in round 11): 0 = off
+ * (never skips); 1..30 = the maximum number of consecutive frames the
+ * core is allowed to skip while it's actually falling behind
+ * (picodrive_frameskip "auto" - the core's own audio-buffer-underrun
+ * signal), enforced by
  * CeVideoFrameSkipShouldForceRender()/NotifyRendered() below - see
- * ce_video.h and ce_main.c's WinMain loop. At 30 this dial's own cap
- * and the core's internal one coincide, so ShouldForceRender() never
- * actually needs to intervene - the core's own FRAMESKIP_MAX does the
- * job on its own at that setting.
+ * ce_video.h and ce_main.c's WinMain loop. The core's own fixed
+ * FRAMESKIP_MAX (platform/libretro/libretro.c) is 60, above this dial's
+ * whole range, so this dial's cap is always the one that applies.
  * A round 7 fixed always-skip-N cadence ("skip N after every rendered
  * frame") felt uneven; a round 9 percentage "Speed" dial on top of the
  * core's own audio-occupancy threshold made no felt difference on
@@ -119,11 +117,12 @@ int CeVideoEnvGetVariable(const char *key, const char **outValue)
     if (strcmp(key, "picodrive_frameskip") == 0)
     {
         /* Plain "auto": skip on the core's own raw audio-underrun signal
-         * (see libretro/libretro.c's retro_run()) - CeVideoFrameSkip
+         * (see platform/libretro/libretro.c's retro_run()) - CeVideoFrameSkip
          * ShouldForceRender()/NotifyRendered() (see ce_video.h and
          * ce_main.c's WinMain loop) cap how many of those skips can
-         * happen in a row at s_frameSkip, since the core's own internal
-         * cap (FRAMESKIP_MAX) is a fixed 30, not adjustable here. */
+         * happen in a row at s_frameSkip; the core's own internal cap
+         * (FRAMESKIP_MAX, a fixed 60) is not adjustable here and is never
+         * reached within this dial's 0..30. */
         *outValue = (s_frameSkip > 0) ? "auto" : "disabled";
         return 1;
     }
