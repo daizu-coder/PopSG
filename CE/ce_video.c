@@ -51,7 +51,7 @@ static int         s_noSpriteLimit = 0;
  * frame") felt uneven; a round 9 percentage "Speed" dial on top of the
  * core's own audio-occupancy threshold made no felt difference on
  * hardware and was removed at the user's request in favour of this. */
-static int         s_frameSkip  = 0;
+static int         s_frameSkip  = 1;
 static int         s_frameSkipConsecutive = 0; /* frames skipped in a row since the last real render - see CeVideoFrameSkipShouldForceRender/NotifyRendered */
 static int         s_debugLog   = 0;           /* "Enable Debug Logging" checkbox - default off; drives CeLogSetEnabled() (see ce_log.h) */
 
