@@ -42,11 +42,17 @@
  * 8192 = ~256ms). s_ring[] is sized for the largest choice;
  * s_ringFrames holds the live capacity and is what every modulus/
  * fullness test uses. The spinner labels these in KB (UpdateBufferLabel:
- * int16_t mono = 2 bytes/frame, so 2048..65536 frames = 4..128 KB);
+ * int16_t mono = 2 bytes/frame, so 4096..65536 frames = 8..128 KB);
  * persisted as "SoundBuffer". Bigger rides out this device's irregular
  * retro_run() timing spikes (the dev notes' perf notes) at the cost of
- * latency. */
-static const unsigned kBufferChoices[] = { 2048, 4096, 8192, 16384, 32768, 65536 };
+ * latency.
+ *
+ * 2048 (4 KB) was dropped: at a 44kHz output rate it is only ~46ms, below
+ * ce_main.c's CE_FRAME_PACING_HIGH_MS (64ms), so even a full ring never
+ * held the frame limiter back and a light system such as the Game Gear
+ * ran too fast, the ring overrunning every frame. A saved 2048 now loads
+ * as 4096. */
+static const unsigned kBufferChoices[] = { 4096, 8192, 16384, 32768, 65536 };
 #define CE_BUFFER_CHOICE_COUNT (sizeof(kBufferChoices) / sizeof(kBufferChoices[0]))
 #define CE_AUDIO_RING_MAX_FRAMES 65536
 static unsigned s_ringFrames = 8192; /* live ring capacity; clamped to a kBufferChoices[] entry in CeAudioInit */
@@ -547,10 +553,11 @@ void CeAudioInit(void)
     s_interpMode    = CeConfigGetInt("SoundInterp", s_interpMode);
 
     /* Ring buffer size - snap a value that isn't in the current
-     * kBufferChoices[] table to the 8192 default. */
+     * kBufferChoices[] table to the 8192 default, except the removed
+     * 2048, which loads as 4096 (see kBufferChoices[]). */
     {
         unsigned k, want = (unsigned)CeConfigGetInt("SoundBuffer", (int)s_ringFrames);
-        s_ringFrames = 8192;
+        s_ringFrames = (want == 2048) ? 4096 : 8192;
         for (k = 0; k < CE_BUFFER_CHOICE_COUNT; k++)
             if (kBufferChoices[k] == want) { s_ringFrames = want; break; }
     }
@@ -681,7 +688,7 @@ static int CurrentBufferStepIndex(void)
     for (i = 0; i < CE_BUFFER_CHOICE_COUNT; i++)
         if (kBufferChoices[i] == s_ringFrames)
             return (int)i;
-    return 2; /* fallback: 8192 */
+    return 1; /* fallback: 8192 */
 }
 
 static void SetBufferFromStepIndex(int index)
@@ -696,8 +703,8 @@ static void SetBufferFromStepIndex(int index)
 static void UpdateBufferLabel(HWND hDlg)
 {
     wchar_t text[16];
-    /* s_ring[] is int16_t mono, so bytes = frames * 2; the six choices
-     * 2048..65536 frames are 4/8/16/32/64/128 KB. Internally everything
+    /* s_ring[] is int16_t mono, so bytes = frames * 2; the five choices
+     * 4096..65536 frames are 8/16/32/64/128 KB. Internally everything
      * (s_ringFrames, kBufferChoices[], the SoundBuffer config key)
      * counts frames - this is a display-only conversion. */
     _snwprintf(text, 16, L"%u KB", (s_ringFrames * 2u) / 1024u);

@@ -168,8 +168,8 @@
 /* Audio ring buffer size (mono frames) - same "-/value/+" spinner style
  * as the four above (round 27 of the sister PopSNES project,
  * after a report of audible output latency at the old fixed ring size).
- * Steps through kBufferChoices[] in ce_audio.c (2048..65536 frames =
- * 4..128 KB, shown in KB); persisted as "SoundBuffer". Bigger = more
+ * Steps through kBufferChoices[] in ce_audio.c (4096..65536 frames =
+ * 8..128 KB, shown in KB); persisted as "SoundBuffer". Bigger = more
  * latency but rides out this device's retro_run() timing spikes
  * without crackle. */
 #define IDC_SC_BUFFER_MINUS  3230
