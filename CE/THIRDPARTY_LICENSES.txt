@@ -387,7 +387,7 @@ this is why PopSG as a whole is for non-commercial use.
 SVP (Virtua Racing's chip)
 --------------------------
 Files:    pico/carthw/svp/svp.c, memory.c, ssp16.c, ssp16.h
-Copyright (c) Grazvydas "notaz" Ignotas, 2008
+Copyright (c) Gražvydas "notaz" Ignotas, 2008
 License:  BSD 3-clause:
 
   Redistribution and use in source and binary forms, with or without
