@@ -206,7 +206,7 @@ PicoDrive
 Upstream: https://github.com/libretro/picodrive (commit 1890c29,
           2026-09-26), the libretro edition of
           https://github.com/irixxxx/picodrive / https://github.com/notaz/picodrive
-Authors:  Grazvydas "notaz" Ignotas, irixxxx, and contributors.
+Authors:  Gražvydas "notaz" Ignotas, irixxxx, and contributors.
 Files:    pico/, platform/libretro/libretro.c, platform/common/mp3*.c,
           platform/common/upscale.h, unzip/ (the files listed separately
           below excepted). Most of them say "This work is licensed under
@@ -323,7 +323,7 @@ Cyclone 68000
 Upstream: https://github.com/irixxxx/cyclone68000 (the cpu/cyclone
           submodule, commit 3ac7cf1).
 Copyright (c) 2004,2011 FinalDave (emudave (at) gmail.com)
-Copyright (c) 2005-2011 Grazvydas "notaz" Ignotas (notasas (at) gmail.com)
+Copyright (c) 2005-2011 Gražvydas "notaz" Ignotas (notasas (at) gmail.com)
 License:  "This code is licensed under the GNU General Public License
           version 2.0 and the MAME License. You can choose the license
           that has the most advantages for you." PopSG combines Cyclone
