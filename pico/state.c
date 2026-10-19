@@ -145,6 +145,11 @@ typedef enum {
 
 } chunk_name_e;
 
+// CE: the cartridge save RAM (Pico.sv.data) of MD and SMS/GG games. Kept far
+// from upstream's numbers (1-61 above, 64-66 for carthw/SVP) so a chunk added
+// upstream later can't take it; older builds skip it as an unknown chunk
+#define CHUNK_CART_SRAM 0xc0
+
 static const char * const chunk_names[CHUNK_DEFAULT_COUNT] = {
   "INVALID!",
   "M68K state",
@@ -282,6 +287,13 @@ static int state_save(void *file)
       CHECKED_WRITE(CHUNK_YM2413, len, buf2);
     }
   }
+  // CE: without the save RAM a state load leaves the game with the save RAM
+  // of another moment, which broke a Game Gear game on a real device after
+  // a load. Not for the Mega CD: its backup RAM is in CHUNK_BRAM. The loader
+  // rejects a chunk over 512KB, so a bigger save RAM is left out
+  if (!(PicoIn.AHW & PAHW_MCD) && Pico.sv.data != NULL &&
+      Pico.sv.size > 0 && Pico.sv.size <= 1024*512)
+    CHECKED_WRITE(CHUNK_CART_SRAM, Pico.sv.size, Pico.sv.data);
   CHECKED_WRITE(CHUNK_PSG, 28*4, sn76496_regs);
 
   if (!(PicoIn.AHW & PAHW_PICO)) {
@@ -514,6 +526,16 @@ static int state_load(void *file)
 
       case CHUNK_SMS:
         CHECKED_READ_BUFF(Pico.ms);
+        break;
+      case CHUNK_CART_SRAM: // CE
+        if (!(PicoIn.AHW & PAHW_MCD) && Pico.sv.data != NULL &&
+            (unsigned int)len == Pico.sv.size) {
+          CHECKED_READ(len, Pico.sv.data);
+          Pico.sv.changed = 1;
+        } else {
+          elprintf(EL_STATUS, "load_state: skipping save RAM chunk of size %i", len);
+          areaSeek(file, len, SEEK_CUR);
+        }
         break;
 
       // cd stuff
