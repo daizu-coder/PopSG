@@ -8076,6 +8076,9 @@ opcode_ED_A1:
 ;@INI
 opcode_ED_A2:
 	opIN_C
+	stmfd sp!,{r0,r1}			;@ store to (HL) before HL is stepped
+	writemem8HL
+	ldmfd sp!,{r0,r1}
 	add z80hl,z80hl,#1<<16
 	sub z80bc,z80bc,#1<<24
 	and z80f,r0,#0x80
@@ -8084,7 +8087,6 @@ opcode_ED_A2:
 	sub r1,r1,#0x01000000
 	adds r1,r1,r0,lsl#24
 	orrcs z80f,z80f,#(1<<CFlag)|(1<<HFlag)	;@ CF & HF set if (HL) + ((C-1) & 0xFF) > 0xFF
-	writemem8HL
 	and r2,r1,#0x07<<24			;@ (HL)&7^B
 	ldr r1,[cpucontext,#tables]
 	eor r2,z80bc
@@ -8160,6 +8162,9 @@ opcode_ED_A9:
 ;@IND
 opcode_ED_AA:
 	opIN_C
+	stmfd sp!,{r0,r1}			;@ store to (HL) before HL is stepped
+	writemem8HL
+	ldmfd sp!,{r0,r1}
 	sub z80hl,z80hl,#1<<16
 	sub z80bc,z80bc,#1<<24
 	and z80f,r0,#0x80
@@ -8168,7 +8173,6 @@ opcode_ED_AA:
 	sub r1,r1,#0x01000000
 	adds r1,r1,r0,lsl#24
 	orrcs z80f,z80f,#(1<<CFlag)|(1<<HFlag)	;@ CF & HF set if (HL) + ((C+1) & 0xFF) > 0xFF
-	writemem8HL
 	and r2,r1,#0x07<<24			;@ (HL)&7^B
 	ldr r1,[cpucontext,#tables]
 	eor r2,z80bc
@@ -8249,6 +8253,9 @@ opcode_ED_B1_done:
 ;@INIR
 opcode_ED_B2:
 	opIN_C
+	stmfd sp!,{r0,r1}			;@ store to (HL) before HL is stepped
+	writemem8HL
+	ldmfd sp!,{r0,r1}
 	add z80hl,z80hl,#1<<16
 	sub z80bc,z80bc,#1<<24
 	and z80f,r0,#0x80
@@ -8257,7 +8264,6 @@ opcode_ED_B2:
 	sub r1,r1,#0x01000000
 	adds r1,r1,r0,lsl#24
 	orrcs z80f,z80f,#(1<<CFlag)|(1<<HFlag)	;@ CF & HF set if (HL) + ((C-1) & 0xFF) > 0xFF
-	writemem8HL
 	and r2,r1,#0x07<<24			;@ (HL)&7^B
 	ldr r1,[cpucontext,#tables]
 	eor r2,z80bc
@@ -8341,6 +8347,9 @@ opcode_ED_B9_done:
 ;@INDR
 opcode_ED_BA:
 	opIN_C
+	stmfd sp!,{r0,r1}			;@ store to (HL) before HL is stepped
+	writemem8HL
+	ldmfd sp!,{r0,r1}
 	sub z80hl,z80hl,#1<<16
 	sub z80bc,z80bc,#1<<24
 	and z80f,r0,#0x80
@@ -8349,7 +8358,6 @@ opcode_ED_BA:
 	sub r1,r1,#0x01000000
 	adds r1,r1,r0,lsl#24
 	orrcs z80f,z80f,#(1<<CFlag)|(1<<HFlag)	;@ CF & HF set if (HL) + ((C+1) & 0xFF) > 0xFF
-	writemem8HL
 	and r2,r1,#0x07<<24			;@ (HL)&7^B
 	ldr r1,[cpucontext,#tables]
 	eor r2,z80bc
