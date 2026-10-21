@@ -250,13 +250,15 @@ License:  the file COPYING in the repository root (MAME-style,
 
 This port compiles platform/libretro/libretro.c unchanged and adds a
 new Win32 front-end under CE/. The only edits to upstream files are a
-handful of NO_32X stub declarations in pico/pico_int.h and a single
+handful of NO_32X stub declarations in pico/pico_int.h, a single
 load-width fix in pico/draw_arm.S (word load -> byte load, to avoid an
-unaligned-access fault on this device); the emu2413 submodule is moved
-forward to a newer upstream commit. Because the redistribution is
-modified, the complete corresponding source is published, as COPYING
-requires; per its special exception, the cross-compiler, C library and
-OS components are not bundled.
+unaligned-access fault on this device), a cartridge save RAM chunk in
+pico/state.c's save states, and a store-order fix for the Z80
+INI/IND/INIR/INDR instructions in cpu/DrZ80/drz80.S; the emu2413
+submodule is moved forward to a newer upstream commit. Because the
+redistribution is modified, the complete corresponding source is
+published, as COPYING requires; per its special exception, the
+cross-compiler, C library and OS components are not bundled.
 
 Upstream files compiled into AppMain.exe that carry no license notice:
 pico/patch.c, pico/carthw_cfg.c (generated data),

@@ -5,7 +5,7 @@
 ## 概要
 
 - セガのゲーム機のエミュレータ [PicoDrive](https://github.com/irixxxx/picodrive) の libretro 版を、SHARP の電子辞書 **Brain PW-G5300**(Windows CE / ARMv5TE、ハードウェア整数除算なし)向けに移植したものです
-- `platform/libretro/libretro.c` をそのままコンパイルし、Win32 のフロントエンド(`CE/` 以下)を新しく書いて繋いでいます。コア側の変更は、32X を外したときの定義の補い(`pico/pico_int.h`)と、この端末で止まる1命令の修正(`pico/draw_arm.S`)だけです
+- `platform/libretro/libretro.c` をそのままコンパイルし、Win32 のフロントエンド(`CE/` 以下)を新しく書いて繋いでいます。コア側の変更は、32X を外したときの定義の補い(`pico/pico_int.h`)、この端末で止まる1命令の修正(`pico/draw_arm.S`)、ステートにカートリッジのセーブを入れること(`pico/state.c`)、Z80 の4つの命令の直し(`cpu/DrZ80/drz80.S`)だけです(くわしくは [`LICENSING.md`](LICENSING.md) の2節)
 - ゲームの ROM・BIOS は同梱していません。利用者が合法的に用意したものを使ってください
 - SHARP・セガとは関係のない、非公式のファンプロジェクトです
 

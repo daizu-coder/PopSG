@@ -35,10 +35,12 @@ PopSG は、セガのゲーム機のエミュレータ [PicoDrive](https://githu
 
 リポジトリ直下のファイルは、上流の [libretro/picodrive](https://github.com/libretro/picodrive) のコミット `1890c29`(2026-09-26)を元にしています。libretro/picodrive は、irixxxx 氏の [picodrive](https://github.com/irixxxx/picodrive)(notaz 氏の [picodrive](https://github.com/notaz/picodrive) の後継)の libretro 版です。
 
-PopSG が変えた上流のファイルは次のものだけです。どれも Windows CE 用のツール(cegcc)とこの端末に合わせるためのもので、ライセンスは変わりません。
+PopSG が変えた上流のファイルは次のものだけです。ライセンスは変わりません。
 
 - `pico/pico_int.h`: 32X を外してビルド(`-DNO_32X`)したときに使う代わりの定義を足した(32X を入れたビルドには影響しない)
 - `pico/draw_arm.S`: 1バイトの値を4バイトで読んでいた1命令を、1バイトの読み込みに直した(この端末では、4の倍数でない番地からの4バイト読み込みで止まるため)
+- `pico/state.c`: メガドライブ・マスターシステム・ゲームギアのステートに、カートリッジのセーブ(SRAM)を入れるようにした(v1.2.0)
+- `cpu/DrZ80/drz80.S`: Z80 の INI・IND・INIR・INDR の4つの命令で、(HL) に書く前に HL を動かしていたのを、書いてから動かすように直した(v1.2.1。ゲームギアの一部のゲームで、会話の文の一部の行が崩れていたため)
 - `pico/sound/emu2413`(サブモジュール): 参照先を `a2dfc20` から `813cff6`(v1.5.9 の次の修正を含む版)に進めた
 - `.gitignore`: PopSG のビルドの生成物などを除外するように書き足した
 

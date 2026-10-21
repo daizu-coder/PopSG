@@ -11,9 +11,11 @@
 # Scope/architecture decisions (see the dev notes for the full rationale):
 #  - platform/libretro/libretro.c is compiled as-is ("libretro frontend,
 #    not a core port", same approach as the sister PopSNES port).
-#    The core itself carries only two small fixes: the missing NO_32X
-#    stubs in pico/pico_int.h and one load-width fix in pico/draw_arm.S
-#    (see below).
+#    The core itself carries only a few small fixes: the missing NO_32X
+#    stubs in pico/pico_int.h, one load-width fix in pico/draw_arm.S
+#    (see below), the cartridge save RAM in pico/state.c's save states,
+#    and the INI/IND/INIR/INDR store order in cpu/DrZ80/drz80.S (see
+#    CE/LICENSING.md section 2).
 #  - 32X is excluded at compile time (-DNO_32X): its SH2 cores add a lot
 #    of CPU/RAM cost this device almost certainly can't spare, and one of
 #    them (cpu/sh2/compiler.c) is a dynamic recompiler - unverified on
@@ -68,8 +70,9 @@
 #    pico/z80if.c/pico/sms.c/pico/memory.c/pico/pico_int.h already had
 #    complete #ifdef _USE_DRZ80 branches wired in - no core changes were
 #    needed, same "already fully implemented, just unused" situation as
-#    EMU_C68K was for Cyclone in round 6). Confirmed clean for this
-#    toolchain the same way Cyclone.s/idle.s were checked: no ELF-only
+#    EMU_C68K was for Cyclone in round 6; v1.2.1 later fixed the
+#    INI/IND/INIR/INDR store order in drz80.S itself). Confirmed clean for
+#    this toolchain the same way Cyclone.s/idle.s were checked: no ELF-only
 #    directives, no cross-section symbol-difference relocations. The one
 #    thing that looked like it might be idle.s's PIC_LDR trouble again -
 #    pico/arm_features.h's PIC_LDR() macro, which drz80.S uses to load
@@ -133,7 +136,7 @@ WINDRES := $(TOOLPREFIX)windres
 # accesses (confirmed the hard way by both sister CE ports).
 ARCH_FLAGS := -march=armv5te -mno-unaligned-access
 
-# === Core sources (unmodified upstream code) ===
+# === Core sources (upstream code; edited files: CE/LICENSING.md section 2) ===
 
 PICO_DIR := $(ROOT)/pico
 CPU_DIR  := $(ROOT)/cpu
