@@ -263,7 +263,7 @@ END
  * "GAIKOKU-English" and "NIHON-Japanese" still fit - IDC_VC_JAPANESE is
  * one control shown at two different strings, not two controls, so
  * they're always exactly the same box). */
-IDD_VIDEOCONFIG DIALOG 0, 0, 190, 118
+IDD_VIDEOCONFIG DIALOG 0, 0, 190, 134
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Video Config"
 FONT 9, "Tahoma"
@@ -310,7 +310,19 @@ BEGIN
      * CeBmpFontDrawOwnerCheckbox(). */
     CHECKBOX    "Enable Debug Logging", IDC_VC_DEBUGLOG, 8, 74, 160, 12, BS_OWNERDRAW
 
-    DEFPUSHBUTTON "OK",  IDOK,                          70, 94, 50, 14, BS_OWNERDRAW
+    /* Main menu key: caption and key button on one row, laid out like
+     * Frame Skip above (caption at y+3 of the button, button at x=100).
+     * "メインメニューキー:" is 140px in Galmuri14 (English "Main Menu
+     * Key:" 119px) and fits left of the button on PW-G5300 and PW-SH2
+     * (CeOpener 800x480 and add-on app 480x320), checked on hardware
+     * 2026-11-14 with the button at x=106; x=100 was then asked for
+     * since it fits there too. The button is 80 wide so "Press key (5)"
+     * fits. OK moved down 16 and the dialog grew 118 -> 134, inside
+     * IDD_MAINMENU's 210x154. */
+    LTEXT       "Main Menu Key:", IDC_VC_LBL_MENUKEY,     8, 92,  90, 12
+    PUSHBUTTON  "None",         IDC_VC_MENUKEY,         100, 89,  80, 14, WS_TABSTOP | BS_OWNERDRAW
+
+    DEFPUSHBUTTON "OK",  IDOK,                          70, 110, 50, 14, BS_OWNERDRAW
 END
 
 /* Custom ROM picker (see ce_fileopen.c) - replaces GetOpenFileNameW(),

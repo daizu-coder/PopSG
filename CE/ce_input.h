@@ -37,4 +37,9 @@ void CeShowInputConfigDialog(HWND owner);
  * diagnostic logging would never see it, but this would. */
 int CeInputIsWaitingForKeyRemap(void);
 
+/* The name Input Config shows for a VK code ("Esc", "Previous", "None"
+ * for 0, "VK_xx" for an unnamed key). The returned string may be a
+ * shared static buffer - copy it before calling again. */
+const wchar_t *CeInputVkLabel(int vk);
+
 #endif
